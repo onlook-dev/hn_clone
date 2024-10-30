@@ -2,16 +2,6 @@
 
 import { useState } from "react";
 
-const NoiseOverlay = () => (
-  <div
-    className="fixed inset-0 pointer-events-none z-50 mix-blend-multiply"
-    style={{
-      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-      filter: "contrast(120%) brightness(120%)",
-    }}
-  />
-);
-
 // Mock data for HN posts
 const posts = [
   {
@@ -53,9 +43,7 @@ export default function Page() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f6f6ef]">
-      <NoiseOverlay />
-      {/* Header */}
+    <div className="min-h-screen bg-[#f6f6ef] flex flex-col">
       <header className="bg-[#ff6600] px-2 py-2">
         <div className="max-w-5xl mx-auto flex items-center gap-4">
           <span className="font-bold text-black">HN</span>
@@ -150,10 +138,10 @@ export default function Page() {
       )}
 
       {/* Main content */}
-      <main className="max-w-5xl mx-auto pt-2 px-2">
-        <ol className="list-decimal list-inside">
+      <main className="max-w-5xl mx-auto pt-2 px-2 w-4/5">
+        <ol className="list-decimal list-inside items-center">
           {posts.map((post) => (
-            <li key={post.id} className="py-2">
+            <li key={post.id} className="py-2 flex-row list-item">
               <div className="inline-block">
                 <h2 className="inline text-sm hover:underline">
                   <a href="#" className="visited:text-gray-600 text-black">
@@ -173,7 +161,7 @@ export default function Page() {
       </main>
 
       {/* Footer */}
-      <footer className="max-w-5xl mx-auto mt-8 border-t border-[#ff6600] py-4 text-xs text-center text-gray-500">
+      <footer className="max-w-5xl mx-auto mt-auto border-t border-[#ff6600] py-4 text-xs text-center text-gray-500 w-full">
         <nav className="space-x-4">
           <a href="#" className="hover:underline">
             Guidelines
